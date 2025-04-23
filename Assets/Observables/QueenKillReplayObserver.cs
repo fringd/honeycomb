@@ -10,6 +10,8 @@ public class QueenKillReplayObserver : KQObserver
     public RawImage replayImage;
     public SpriteRenderer bg;
 
+    float backgroundWidth;
+
     RenderTexture replayRender;
     VideoClipper.Clip clip;
 
@@ -21,6 +23,10 @@ public class QueenKillReplayObserver : KQObserver
         base.Start();
         GameModel.onGameEvent.AddListener(OnGameEvent);
         replayRender = new RenderTexture(1920, 1080, 24);
+        backgroundWidth = bg.transform.localScale.x;
+        Vector3 lTemp = bg.transform.localScale;
+        lTemp.x = 0.0f;
+        bg.transform.localScale = lTemp;
     }
 
     private void OnGameEvent(string type, GameEventData data)
@@ -47,7 +53,7 @@ public class QueenKillReplayObserver : KQObserver
             var xCenter = Mathf.Min(.7f, Math.Max(0f, ((float)data.coordinates.x / 1920f) - .15f));
             var yCenter = Mathf.Min(.7f, Mathf.Max(0f, ((float)data.coordinates.y / 1080f) - .15f));
             replayImage.uvRect = new Rect(xCenter, yCenter, .3f, .3f);
-            bg.transform.DOScaleX(8.54f, .2f).SetEase(Ease.OutQuad);
+            bg.transform.DOScaleX(backgroundWidth, .2f).SetEase(Ease.OutQuad);
             replayImage.DOColor(Color.white, .5f);
         }
     }

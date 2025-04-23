@@ -44,3 +44,12 @@ Builds/*
 .vs/*
 **/.vs/*
 mono_crash*
+Honeycomb.exe
+MonoBleedingEdge/
+UnityCrashHandler64.exe
+UnityPlayer.dll
+__MACOSX/
+/kquity
+/Honeycomb_Data/
+/Honeycomb*_DoNotShip
+/.idea
